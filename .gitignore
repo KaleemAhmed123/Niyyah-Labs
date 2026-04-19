@@ -31,3 +31,9 @@ Thumbs.db
 
 # typescript
 *.tsbuildinfo
+
+SALESFORCE_LEAD_RESTORE.md
+audit_report.md
+design_concept.md
+gemini.md
+qns.md
