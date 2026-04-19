@@ -162,30 +162,6 @@ export function TerminalIntake() {
     }
   };
 
-  const submitNetlifyForm = async () => {
-    const formData = new URLSearchParams();
-
-    formData.append("form-name", "niyyah-labs-lead");
-    formData.append("name", form.name);
-    formData.append("email", form.email);
-    formData.append("company", form.company || "Not Provided");
-    formData.append("scope", form.scope);
-    formData.append("timeline", form.timeline);
-    formData.append("budget", form.budget);
-    formData.append("challenge", form.challenge);
-    formData.append("brief", briefDraft);
-
-    const response = await fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: formData.toString(),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Netlify form submission failed: ${response.status}`);
-    }
-  };
-
   const submitLead = async () => {
     if (submitStatus === "submitting") return;
 
@@ -229,44 +205,15 @@ export function TerminalIntake() {
       setSubmitMessage(
         "Project brief received. We will review the context and reply with the clearest next step."
       );
-    } catch {
-      try {
-        await submitNetlifyForm();
-        setSubmitStatus("success");
-        setSubmitMessage(
-          "Project brief received. We will review the context and reply with the clearest next step."
-        );
-      } catch (netlifyError) {
-        const message =
-          netlifyError instanceof Error
-            ? netlifyError.message
-            : "Project brief submission failed.";
-        setSubmitStatus("error");
-        setSubmitMessage(message);
-      }
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Project brief submission failed.";
+      setSubmitStatus("error");
+      setSubmitMessage(message);
     }
   };
-
-  const netlifyFields = (
-    <form
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      hidden
-      method="POST"
-      name="niyyah-labs-lead"
-    >
-      <input name="form-name" type="hidden" value="niyyah-labs-lead" />
-      <input name="bot-field" />
-      <input name="name" />
-      <input name="email" />
-      <input name="company" />
-      <input name="scope" />
-      <input name="timeline" />
-      <input name="budget" />
-      <textarea defaultValue="" name="challenge" />
-      <textarea defaultValue="" name="brief" />
-    </form>
-  );
 
   const resetForm = () => {
     setForm(initialState);
@@ -280,7 +227,6 @@ export function TerminalIntake() {
 
   return (
     <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-      {netlifyFields}
       <div className="terminal-shell">
         <div className="terminal-header">
           <span className="font-mono text-xs uppercase tracking-[0.24em] text-foreground-muted">
