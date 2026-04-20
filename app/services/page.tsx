@@ -13,10 +13,10 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <SiteHeader currentPath="/services" />
 
-          <div className="max-w-3xl space-y-5 py-16 lg:py-24">
+          <div className="max-w-3xl space-y-5 py-12 lg:py-16">
             <p className="eyebrow">Services</p>
             <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
               Three core service pages built for modern business systems.
@@ -29,7 +29,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-5 lg:grid-cols-3">
           {primaryServices.map((service) => (
             <article className="panel service-card" key={service.slug}>

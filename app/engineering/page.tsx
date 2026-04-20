@@ -17,10 +17,10 @@ export default function EngineeringPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <SiteHeader currentPath="/engineering" />
 
-          <div className="max-w-4xl py-16 lg:py-24">
+          <div className="max-w-4xl py-12 lg:py-16">
             <p className="eyebrow">Engineering</p>
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
               The engineering layer is where the long-term reliability comes from.
@@ -35,7 +35,7 @@ export default function EngineeringPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-4 sm:grid-cols-2">
           {engineeringPillars.map((pillar) => (
             <article className="panel engineering-card" key={pillar.title}>
@@ -55,7 +55,7 @@ export default function EngineeringPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="panel">
           <div className="max-w-3xl">
             <p className="eyebrow">Capability Signals</p>
@@ -77,7 +77,7 @@ export default function EngineeringPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="panel grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="eyebrow">Technology Base</p>
@@ -103,7 +103,7 @@ export default function EngineeringPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="panel cta-panel">
           <p className="eyebrow">Next Step</p>
           <h2 className="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">

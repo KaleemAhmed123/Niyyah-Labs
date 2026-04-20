@@ -13,10 +13,10 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <SiteHeader currentPath="/work" />
 
-          <div className="mt-16 max-w-3xl space-y-5 pb-16 lg:pb-24">
+          <div className="mt-10 max-w-3xl space-y-5 pb-12 lg:pb-16">
             <p className="eyebrow">Work</p>
             <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
               Systems built around reliability, automation, and operational clarity.
@@ -30,8 +30,8 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
-        <div className="mt-12 grid gap-5">
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+        <div className="mt-8 grid gap-5">
           {featuredProjects.map((project) => (
             <article className="panel proof-project" key={project.id}>
               <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">

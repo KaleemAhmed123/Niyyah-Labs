@@ -31,10 +31,10 @@ function SectionShell({
 function HeroSection() {
   return (
     <section className="grid-shell relative overflow-hidden">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-between px-6 py-8 lg:px-10">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-5 lg:px-10 lg:py-6">
         <SiteHeader currentPath="/" />
 
-        <div className="grid gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:py-24">
+        <div className="grid flex-1 gap-8 py-6 lg:grid-cols-[0.98fr_0.82fr] lg:items-start lg:py-10 xl:gap-10 xl:py-12">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/4 px-4 py-2 text-xs uppercase tracking-[0.25em] text-foreground-muted">
               <span className="h-2 w-2 rounded-full bg-accent-cyan shadow-[0_0_16px_rgba(93,211,255,0.9)]" />
@@ -43,7 +43,7 @@ function HeroSection() {
 
             <div className="space-y-5">
               <p className="eyebrow">System-first digital experiences</p>
-              <h1 className="max-w-5xl text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-white sm:text-6xl lg:text-8xl">
+              <h1 className="max-w-4xl text-[clamp(3.2rem,6vw,6.4rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-white">
                 We build the software layer your business can actually run on.
               </h1>
               <p className="max-w-2xl text-base leading-7 text-foreground-soft sm:text-lg">
@@ -62,7 +62,7 @@ function HeroSection() {
               </a>
             </div>
 
-            <div className="grid gap-4 pt-4 sm:grid-cols-3">
+            <div className="grid gap-4 pt-2 sm:grid-cols-3">
               {trustMetrics.map((metric) => (
                 <div className="metric-card" key={metric.value}>
                   <p className="metric-value">{metric.value}</p>
@@ -72,7 +72,9 @@ function HeroSection() {
             </div>
           </div>
 
-          <HeroCommandPanel />
+          <div className="mx-auto w-full max-w-[35rem] lg:-mt-4 xl:-mt-8 xl:max-w-[37rem]">
+            <HeroCommandPanel />
+          </div>
         </div>
       </div>
     </section>
@@ -81,7 +83,7 @@ function HeroSection() {
 
 function ManifestoSection() {
   return (
-    <SectionShell className="py-20" id="approach">
+    <SectionShell className="py-16 lg:py-18" id="approach">
       <ScrollReveal>
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <SectionHeading
@@ -117,7 +119,7 @@ function ManifestoSection() {
 
 function ServicesSection() {
   return (
-    <SectionShell className="pb-24" id="services">
+    <SectionShell className="pb-18 lg:pb-20" id="services">
       <SectionHeading
         eyebrow="Services"
         title="Choose the closest starting point, then go deeper on the dedicated page."
@@ -175,7 +177,7 @@ function ServicesSection() {
 
 function ProofSection() {
   return (
-    <SectionShell className="pb-24" id="proof">
+    <SectionShell className="pb-18 lg:pb-20" id="proof">
       <ScrollReveal>
         <div className="panel compact-proof-panel">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
@@ -204,7 +206,7 @@ function ProofSection() {
 
 function ProcessPreviewSection() {
   return (
-    <SectionShell className="pb-24">
+    <SectionShell className="pb-18 lg:pb-20">
       <ScrollReveal>
         <div className="panel grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div className="space-y-6">
@@ -290,7 +292,7 @@ function ProcessPreviewSection() {
 
 function ContactSection() {
   return (
-    <SectionShell className="pb-24" id="contact">
+    <SectionShell className="pb-18 lg:pb-20" id="contact">
       <ScrollReveal>
         <div className="panel cta-panel">
         <div className="space-y-5">
