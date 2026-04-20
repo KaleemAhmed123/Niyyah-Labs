@@ -1,23 +1,21 @@
 import Link from "next/link";
-import type { ServiceDetail } from "@/components/home/home-data";
+import { featuredProjects, type ServiceDetail } from "@/components/home/home-data";
+import { SiteHeader } from "@/components/site/site-header";
 
 type ServiceDetailPageProps = {
   service: ServiceDetail;
 };
 
 export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
+  const relatedProjects = featuredProjects.filter((project) =>
+    service.relatedProjectIds.includes(project.id)
+  );
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
-          <div className="flex items-center justify-between gap-4">
-            <Link className="text-sm text-foreground-muted" href="/">
-              Home
-            </Link>
-            <Link className="text-sm text-foreground-muted" href="/services">
-              All services
-            </Link>
-          </div>
+          <SiteHeader currentPath="/services" />
 
           <div className="grid gap-8 py-16 lg:grid-cols-[1fr_0.9fr] lg:items-end lg:py-24">
             <div className="space-y-6">
@@ -27,6 +25,9 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               </h1>
               <p className="max-w-2xl text-base leading-7 text-foreground-soft sm:text-lg">
                 {service.intro}
+              </p>
+              <p className="max-w-2xl text-sm leading-7 text-foreground-muted">
+                {service.detailIntro}
               </p>
               <div className="flex flex-wrap gap-2">
                 {service.stack.map((item) => (
@@ -80,6 +81,34 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+          <article className="panel">
+            <p className="eyebrow">How Engagements Start</p>
+            <div className="mt-6 grid gap-4">
+              {service.engagementSteps.map((item, index) => (
+                <div className="artifact-row" key={item}>
+                  <p className="artifact-label">Step 0{index + 1}</p>
+                  <p className="artifact-text">{item}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="panel">
+            <p className="eyebrow">Not Ideal For</p>
+            <div className="mt-6 space-y-3">
+              {service.notFit.map((item) => (
+                <div className="list-row" key={item}>
+                  <span className="list-dot" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
         <div className="panel grid gap-8 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="eyebrow">Expected Outcomes</p>
@@ -98,6 +127,83 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
           </div>
         </div>
       </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
+          <article className="panel">
+            <p className="eyebrow">Trust Signals</p>
+            <div className="mt-6 space-y-3">
+              {service.proofPoints.map((item) => (
+                <div className="list-row" key={item}>
+                  <span className="list-dot" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="panel">
+            <p className="eyebrow">Buyer Questions</p>
+            <div className="mt-6 grid gap-4">
+              {service.keyQuestions.map((item) => (
+                <div className="panel-subtle" key={item.question}>
+                  <h2 className="text-lg font-semibold tracking-[-0.03em] text-white">
+                    {item.question}
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-foreground-soft">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {relatedProjects.length > 0 ? (
+        <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+          <div className="panel">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <p className="eyebrow">Related Work</p>
+                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+                  Examples that show how this service works in real systems.
+                </h2>
+              </div>
+              <Link className="button-secondary" href="/work">
+                View all case studies
+              </Link>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
+              {relatedProjects.map((project) => (
+                <article className="panel-subtle" key={project.id}>
+                  <p className="stack-label">{project.category}</p>
+                  <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">
+                    {project.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-foreground-soft">
+                    {project.summary}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.proof.map((item) => (
+                      <span className="tag" key={item}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    className="mt-6 inline-flex text-sm text-accent-cyan"
+                    href={`/work/${project.slug}`}
+                  >
+                    Read case study
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
         <div className="panel cta-panel">

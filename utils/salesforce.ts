@@ -10,6 +10,7 @@ type SalesforceLeadPayload = {
   FirstName?: string;
   LastName: string;
   Email?: string;
+  Phone?: string;
   Company: string;
   LeadSource?: string;
   Description?: string;

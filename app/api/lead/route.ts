@@ -4,6 +4,7 @@ import { createSalesforceLead } from "@/utils/salesforce";
 type LeadRequest = {
   name?: string;
   email?: string;
+  phone?: string;
   company?: string;
   scope?: string;
   timeline?: string;
@@ -33,6 +34,7 @@ function validateLead(body: LeadRequest) {
 
   if (!body.name?.trim()) errors.push("name is required");
   if (!body.email?.trim()) errors.push("email is required");
+  if (!body.phone?.trim()) errors.push("phone is required");
   if (!body.scope?.trim()) errors.push("scope is required");
   if (!body.challenge?.trim()) errors.push("challenge is required");
 
@@ -62,6 +64,7 @@ export async function POST(request: Request) {
       `Scope: ${body.scope || "Not provided"}`,
       `Timeline: ${body.timeline || "Not provided"}`,
       `Budget: ${body.budget || "Not provided"}`,
+      `Phone: ${body.phone || "Not provided"}`,
       `Challenge: ${body.challenge || "Not provided"}`,
     ]
       .filter(Boolean)
@@ -71,6 +74,7 @@ export async function POST(request: Request) {
       FirstName: firstName || undefined,
       LastName: lastName,
       Email: body.email,
+      Phone: body.phone,
       Company: body.company?.trim() || "Not Provided",
       LeadSource: "Web Site",
       Description: description.slice(0, 32000),

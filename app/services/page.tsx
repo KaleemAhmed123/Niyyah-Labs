@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { primaryServices } from "@/components/home/home-data";
+import { SiteHeader } from "@/components/site/site-header";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -11,19 +12,25 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
-        <div className="max-w-3xl space-y-5">
-          <p className="eyebrow">Services</p>
-          <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
-            Three core service pages built for modern business systems.
-          </h1>
-          <p className="text-base leading-7 text-foreground-soft sm:text-lg">
-            Choose the entry point closest to your current bottleneck, then use
-            the project brief to turn it into a practical build conversation.
-          </p>
-        </div>
+      <section className="grid-shell relative overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+          <SiteHeader currentPath="/services" />
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          <div className="max-w-3xl space-y-5 py-16 lg:py-24">
+            <p className="eyebrow">Services</p>
+            <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
+              Three core service pages built for modern business systems.
+            </h1>
+            <p className="text-base leading-7 text-foreground-soft sm:text-lg">
+              Choose the entry point closest to your current bottleneck, then use
+              the project brief to turn it into a practical build conversation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <div className="grid gap-5 lg:grid-cols-3">
           {primaryServices.map((service) => (
             <article className="panel service-card" key={service.slug}>
               <p className="stack-label">{service.label}</p>

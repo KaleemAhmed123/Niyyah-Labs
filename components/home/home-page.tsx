@@ -1,19 +1,16 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { TerminalIntake } from "@/components/contact/terminal-intake";
+import { HeroCommandPanel } from "@/components/home/hero-command-panel";
 import { SectionHeading } from "@/components/home/section-heading";
 import {
   buildCapabilities,
-  deliveryArtifacts,
-  engineeringPillars,
-  faqItems,
-  navItems,
   primaryServices,
   processSignals,
-  processSteps,
-  stackGroups,
   trustMetrics,
 } from "@/components/home/home-data";
+import { ScrollReveal } from "@/components/site/scroll-reveal";
+import { SiteHeader } from "@/components/site/site-header";
 
 function SectionShell({
   children,
@@ -35,36 +32,7 @@ function HeroSection() {
   return (
     <section className="grid-shell relative overflow-hidden">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-between px-6 py-8 lg:px-10">
-        <header className="flex items-center justify-between gap-6">
-          <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.35em] text-foreground-muted">
-              Niyyah Labs
-            </p>
-            <p className="text-sm text-foreground-soft">
-              Product engineering, AI systems, and integrations
-            </p>
-          </div>
-
-          <nav className="hidden items-center gap-6 text-sm text-foreground-muted md:flex">
-            {navItems.map((item) => (
-              <a href={item.href} key={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </header>
-
-        <nav className="mt-6 flex flex-wrap gap-2 text-sm text-foreground-soft md:hidden">
-          {navItems.map((item) => (
-            <a
-              className="rounded-full border border-white/10 bg-white/4 px-3 py-2"
-              href={item.href}
-              key={item.href}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <SiteHeader currentPath="/" />
 
         <div className="grid gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:py-24">
           <div className="space-y-8">
@@ -104,67 +72,7 @@ function HeroSection() {
             </div>
           </div>
 
-          <div className="panel glow-panel hero-panel">
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-xs uppercase tracking-[0.24em] text-foreground-muted">
-              <span>business_problem.yml</span>
-              <span>command center</span>
-            </div>
-
-            <div className="grid gap-6 p-5">
-              <pre className="code-block">
-                {`challenge: "Scale operations without hiring 50 reps"
-goals:
-  - launch client portal
-  - automate lead routing
-  - connect crm + reporting
-solution:
-  product: "customer operations dashboard"
-  ai: "assistant + workflow logic"
-  integrations: "salesforce, stripe, analytics"
-outcome: "One system for growth"`}
-              </pre>
-
-              <div className="rounded-[1.75rem] border border-white/10 bg-white/4 p-4">
-                <div className="mb-4 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-white">
-                      AI Operations Pipeline
-                    </p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.2em] text-foreground-muted">
-                      Live architecture preview
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-accent-violet/15 px-3 py-1 text-xs text-accent-violet">
-                    Active
-                  </span>
-                </div>
-
-                <div className="space-y-3">
-                  {[
-                    "Customer request intake",
-                    "Knowledge retrieval + policy checks",
-                    "CRM update + owner routing",
-                    "Reporting stream to dashboard",
-                  ].map((item, index) => (
-                    <div className="pipeline-row" key={item}>
-                      <span className="pipeline-index">0{index + 1}</span>
-                      <span className="text-sm text-foreground-soft">{item}</span>
-                      <span className="pipeline-dot" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-3">
-                {["Product", "Automation", "Integrations"].map((item) => (
-                  <div className="status-card" key={item}>
-                    <p className="stack-label">{item}</p>
-                    <p className="mt-2 text-sm text-white">System aligned</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <HeroCommandPanel />
         </div>
       </div>
     </section>
@@ -174,7 +82,8 @@ outcome: "One system for growth"`}
 function ManifestoSection() {
   return (
     <SectionShell className="py-20" id="approach">
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <ScrollReveal>
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <SectionHeading
           eyebrow="Manifesto"
           title="Stop managing tools. Start running systems."
@@ -200,7 +109,8 @@ function ManifestoSection() {
             clearer system for growth.
           </p>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </SectionShell>
   );
 }
@@ -209,14 +119,15 @@ function ServicesSection() {
   return (
     <SectionShell className="pb-24" id="services">
       <SectionHeading
-        eyebrow="Core Offers"
-        title="Three entry points, backed by deep engineering capability."
-        description="Choose the starting point closest to the bottleneck: launching a product, automating a workflow, or connecting Salesforce with the rest of the business."
+        eyebrow="Services"
+        title="Choose the closest starting point, then go deeper on the dedicated page."
+        description="The homepage now stays focused on direction. Each service has its own page for deliverables, fit, outcomes, and next steps."
       />
 
       <div className="mt-12 grid gap-5 lg:grid-cols-3">
-        {primaryServices.map((service) => (
-          <article className="panel service-card" key={service.id}>
+        {primaryServices.map((service, index) => (
+          <ScrollReveal delayMs={index * 80} key={service.id}>
+            <article className="panel service-card">
             <p className="stack-label">{service.label}</p>
             <h3 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-white">
               {service.title}
@@ -242,12 +153,22 @@ function ServicesSection() {
               ))}
             </div>
 
-            <Link className="mt-8 inline-flex text-sm text-accent-cyan" href={`/services/${service.slug}`}>
+            <Link
+              className="mt-8 inline-flex text-sm text-accent-cyan"
+              href={`/services/${service.slug}`}
+            >
               Explore service
             </Link>
-          </article>
+            </article>
+          </ScrollReveal>
         ))}
       </div>
+
+      <ScrollReveal className="mt-8 flex justify-start" delayMs={120}>
+        <Link className="button-secondary" href="/services">
+          View all service pages
+        </Link>
+      </ScrollReveal>
     </SectionShell>
   );
 }
@@ -255,7 +176,8 @@ function ServicesSection() {
 function ProofSection() {
   return (
     <SectionShell className="pb-24" id="proof">
-      <div className="panel compact-proof-panel">
+      <ScrollReveal>
+        <div className="panel compact-proof-panel">
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <SectionHeading
             eyebrow="Proof Signals"
@@ -274,75 +196,26 @@ function ProofSection() {
             ))}
           </div>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </SectionShell>
   );
 }
 
-function EngineeringSection() {
+function ProcessPreviewSection() {
   return (
-    <SectionShell className="pb-24" id="engineering">
-      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+    <SectionShell className="pb-24">
+      <ScrollReveal>
+        <div className="panel grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div className="space-y-6">
           <SectionHeading
-            eyebrow="Engineering Depth"
-            title="The build quality is the differentiator."
-            description="This is where we move beyond surface-level web development. The engineering layer includes backend architecture, enterprise data sync, async workflows, observability, and production-grade product surfaces."
+            eyebrow="How We Work"
+            title="The detailed process and engineering depth now live on dedicated pages."
+            description="The homepage keeps the overview compact. Use the destination pages for the full delivery model, technical signals, and implementation profile."
           />
 
-          <div className="panel engineering-summary">
-            <p className="stack-label">Engineering signals</p>
-            <div className="mt-5 grid gap-3">
-              {[
-                "SAP, Salesforce, and ecommerce synchronization",
-                "12-service marketplace backend architecture",
-                "RabbitMQ events, Redis caching, and webhook flows",
-                "Docker, CI/CD, Winston logging, and Grafana visibility",
-              ].map((item) => (
-                <div className="list-row" key={item}>
-                  <span className="list-dot" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {engineeringPillars.map((pillar) => (
-            <article className="panel engineering-card" key={pillar.title}>
-              <p className="stack-label">{pillar.title}</p>
-              <p className="mt-4 text-sm leading-7 text-foreground-soft">
-                {pillar.summary}
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {pillar.capabilities.map((capability) => (
-                  <span className="tag" key={capability}>
-                    {capability}
-                  </span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </SectionShell>
-  );
-}
-
-function ProcessSection() {
-  return (
-    <SectionShell className="pb-24" id="process">
-      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-        <div className="space-y-6">
-          <SectionHeading
-            eyebrow="Process"
-            title="Business-first delivery with technical depth behind it."
-            description="Every engagement starts with the business workflow, then turns it into a practical system plan, implementation path, and release-ready foundation."
-          />
-
-          <div className="panel process-signal-panel">
-            <p className="stack-label">What fills the gap between idea and code</p>
+          <div className="panel-subtle">
+            <p className="stack-label">What stays consistent</p>
             <div className="mt-5 space-y-3">
               {processSignals.map((signal) => (
                 <div className="list-row" key={signal}>
@@ -352,110 +225,65 @@ function ProcessSection() {
               ))}
             </div>
           </div>
-
-          <div className="panel process-artifact-panel">
-            <p className="stack-label">Delivery artifacts</p>
-            <div className="mt-5 grid gap-4">
-              {deliveryArtifacts.map((artifact) => (
-                <div className="artifact-row" key={artifact.label}>
-                  <p className="artifact-label">{artifact.label}</p>
-                  <p className="artifact-text">{artifact.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-            {[
-              ["01", "Discovery map"],
-              ["02", "Architecture plan"],
-              ["03", "Release path"],
-            ].map(([value, label]) => (
-              <div className="process-mini-card" key={label}>
-                <p className="metric-value">{value}</p>
-                <p className="metric-label">{label}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
-        <div className="space-y-4">
-          {processSteps.map((item) => (
-            <article className="panel process-row" key={item.step}>
-              <div className="process-index">{item.step}</div>
+        <div className="grid gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link className="panel-subtle block" href="/process">
+              <p className="stack-label">Process</p>
+              <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">
+                See the delivery path from system mapping to release readiness.
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-foreground-soft">
+                Review the engagement flow, delivery artifacts, and how decisions
+                are made before implementation starts.
+              </p>
+            </Link>
+
+            <Link className="panel-subtle block" href="/engineering">
+              <p className="stack-label">Engineering</p>
+              <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">
+                Explore the technical layer behind product, AI, and integration work.
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-foreground-soft">
+                See backend architecture, data sync, async workflows, observability,
+                and the implementation stack in one place.
+              </p>
+            </Link>
+          </div>
+
+          <div className="panel-subtle relative overflow-hidden">
+            <div className="absolute inset-y-0 right-0 w-40 bg-[radial-gradient(circle_at_center,rgba(93,211,255,0.16),transparent_70%)]" />
+            <p className="stack-label">Why teams hire us</p>
+            <div className="mt-4 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
               <div>
-                <h3 className="text-xl font-semibold tracking-[-0.03em] text-white">
-                  {item.title}
+                <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
+                  Calm execution for messy product and operations problems.
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-foreground-soft">
-                  {item.text}
+                <p className="mt-3 max-w-xl text-sm leading-7 text-foreground-soft">
+                  Most teams do not need more software noise. They need someone who
+                  can map the bottleneck, define the system, and ship something
+                  reliable enough to operate on.
                 </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {item.details.map((detail) => (
-                    <span className="tag" key={detail}>
-                      {detail}
-                    </span>
-                  ))}
-                </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </SectionShell>
-  );
-}
 
-function StackSection() {
-  return (
-    <SectionShell className="pb-24">
-      <div className="panel grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-        <SectionHeading
-          eyebrow="Technology Base"
-          title="Implementation stack chosen for real systems."
-          description="The stack now reflects the engineering profile more accurately: product frontends, Node.js services, Salesforce/data integrations, queues, caching, DevOps, and observability."
-        />
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {stackGroups.map((group) => (
-            <div className="panel-subtle" key={group.title}>
-              <p className="stack-label">{group.title}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span className="tag" key={item}>
-                    {item}
-                  </span>
+              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                {[
+                  ["01", "Clear scope before build"],
+                  ["02", "System logic before automation"],
+                  ["03", "Launch paths built for iteration"],
+                ].map(([value, label]) => (
+                  <div className="process-mini-card" key={label}>
+                    <p className="metric-value">{value}</p>
+                    <p className="metric-label">{label}</p>
+                  </div>
                 ))}
               </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </SectionShell>
-  );
-}
-
-function FaqSection() {
-  return (
-    <SectionShell className="pb-24" id="faq">
-      <SectionHeading
-        eyebrow="FAQ"
-        title="What buyers usually want to know before a build."
-        description="Clear answers around fit, delivery, ownership, and how Niyyah Labs turns business problems into production-ready systems."
-      />
-
-      <div className="mt-10 grid gap-4">
-        {faqItems.map((item) => (
-          <article className="panel faq-card" key={item.question}>
-            <h3 className="text-xl font-semibold tracking-[-0.03em] text-white">
-              {item.question}
-            </h3>
-            <p className="mt-4 max-w-4xl text-sm leading-7 text-foreground-soft">
-              {item.answer}
-            </p>
-          </article>
-        ))}
-      </div>
+        </div>
+      </ScrollReveal>
     </SectionShell>
   );
 }
@@ -463,7 +291,8 @@ function FaqSection() {
 function ContactSection() {
   return (
     <SectionShell className="pb-24" id="contact">
-      <div className="panel cta-panel">
+      <ScrollReveal>
+        <div className="panel cta-panel">
         <div className="space-y-5">
           <p className="eyebrow">Contact</p>
           <h2 className="max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
@@ -486,7 +315,8 @@ function ContactSection() {
         <div className="mt-8">
           <TerminalIntake />
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </SectionShell>
   );
 }
@@ -532,10 +362,7 @@ export function HomePage() {
       <ManifestoSection />
       <ServicesSection />
       <ProofSection />
-      <EngineeringSection />
-      <ProcessSection />
-      <StackSection />
-      <FaqSection />
+      <ProcessPreviewSection />
       <ContactSection />
     </main>
   );

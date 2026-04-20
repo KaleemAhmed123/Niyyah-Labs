@@ -5,10 +5,19 @@ export type ServiceDetail = {
   title: string;
   summary: string;
   intro: string;
+  detailIntro: string;
   outcomes: string[];
   stack: string[];
   deliverables: string[];
   fit: string[];
+  notFit: string[];
+  engagementSteps: string[];
+  proofPoints: string[];
+  keyQuestions: {
+    question: string;
+    answer: string;
+  }[];
+  relatedProjectIds: string[];
   results: string[];
   seoTitle: string;
   seoDescription: string;
@@ -16,13 +25,18 @@ export type ServiceDetail = {
 
 export type FeaturedProject = {
   id: string;
+  slug: string;
   category: string;
   title: string;
   clientLabel: string;
+  summary: string;
   problem: string;
   architecture: string[];
+  approach: string[];
   outcome: string;
   proof: string[];
+  impact: string[];
+  relatedServices: string[];
 };
 
 export type ReviewSlot = {
@@ -62,6 +76,8 @@ export const primaryServices: ServiceDetail[] = [
       "We build MVPs, SaaS platforms, portals, and internal products with auth, roles, dashboards, payments, and clean architecture from day one.",
     intro:
       "This offer is for founders and teams who need speed, but not a throwaway prototype. The goal is a focused first version that can onboard users and keep evolving.",
+    detailIntro:
+      "The work starts by narrowing the first release to the highest-leverage user flow, then building the product foundation so new features, roles, billing logic, and reporting can be added without a rebuild.",
     outcomes: [
       "Launch a focused version in weeks",
       "Include the core product primitives from day one",
@@ -79,6 +95,35 @@ export const primaryServices: ServiceDetail[] = [
       "Businesses replacing spreadsheet-driven internal workflows",
       "Teams rebuilding an unstable MVP into a scalable product base",
     ],
+    notFit: [
+      "Teams looking for a no-code prototype with no plan for production",
+      "Projects where the product direction is still too vague to define a first critical workflow",
+      "Engagements that only need a marketing site instead of a product system",
+    ],
+    engagementSteps: [
+      "Clarify the launch constraint, user roles, and first high-value workflow",
+      "Define scope boundaries, product architecture, and release assumptions",
+      "Build the customer-facing surface and backend foundation together",
+      "Ship with deployment notes, handoff context, and a clear next iteration path",
+    ],
+    proofPoints: [
+      "Multi-surface product architecture for customer, seller, and admin users",
+      "Role-aware dashboards, auth, and reusable UI patterns from the first release",
+      "Launch foundations designed for iteration instead of throwaway validation",
+    ],
+    keyQuestions: [
+      {
+        question: "Can this start as a lean MVP without becoming fragile later?",
+        answer:
+          "Yes. The scope stays lean, but the architecture still accounts for roles, data ownership, and future iteration so the first launch does not create a rebuild trap.",
+      },
+      {
+        question: "Do you help shape the first release, not just code what is requested?",
+        answer:
+          "Yes. The engagement is strongest when we refine the first release around the actual business risk, user workflow, and operational constraint instead of just implementing a feature list.",
+      },
+    ],
+    relatedProjectIds: ["multi-surface-app", "commerce-platform"],
     results: [
       "Cleaner launch path with fewer rebuilds later",
       "Faster iteration after the first release",
@@ -97,6 +142,8 @@ export const primaryServices: ServiceDetail[] = [
       "We design AI assistants, agents, and workflow automation systems that reduce repetitive work and connect to business systems.",
     intro:
       "This is not chatbot theater. It is for teams that want AI embedded inside real workflows, permissions, business rules, and reporting.",
+    detailIntro:
+      "The focus is operational usefulness: where the assistant gets context, which systems it can touch, when a human must review, and how the workflow is measured after launch.",
     outcomes: [
       "Internal knowledge assistants",
       "Lead qualification and operational reporting flows",
@@ -114,6 +161,35 @@ export const primaryServices: ServiceDetail[] = [
       "Operators who want AI connected to CRM, reporting, or approvals",
       "Businesses exploring agents but needing guardrails and real value",
     ],
+    notFit: [
+      "Teams looking for a generic chatbot with no operational integration",
+      "Use cases without a clear workflow, source of truth, or owner",
+      "Projects that treat prompts as a substitute for system design and monitoring",
+    ],
+    engagementSteps: [
+      "Map the repetitive workflow, source systems, and approval boundaries",
+      "Design the retrieval, tool-use, and fallback paths around real operations",
+      "Implement the assistant or automation layer with monitoring and guardrails",
+      "Review performance, failure modes, and the next automation opportunities",
+    ],
+    proofPoints: [
+      "Workflow-first automation instead of isolated AI demos",
+      "Assistants and agents connected to CRM, forms, internal tools, and reporting",
+      "Monitoring, prompt controls, and escalation paths for edge cases",
+    ],
+    keyQuestions: [
+      {
+        question: "How do you keep AI work from becoming a fragile demo?",
+        answer:
+          "By designing the surrounding system, not just the prompt. We define the data source, permissions, handoff rules, and operational monitoring so the automation can survive real use.",
+      },
+      {
+        question: "Can AI be combined with existing business tools?",
+        answer:
+          "Yes. The strongest use cases usually connect assistants or automation to CRM records, knowledge sources, forms, internal tools, approvals, or reporting flows.",
+      },
+    ],
+    relatedProjectIds: ["sap-salesforce-sync", "commerce-platform"],
     results: [
       "Reduced operational drag",
       "Faster response cycles across internal or customer workflows",
@@ -132,6 +208,8 @@ export const primaryServices: ServiceDetail[] = [
       "We connect Salesforce with ecommerce, internal apps, SAP-style systems, files, APIs, dashboards, and automation workflows.",
     intro:
       "This offer fits teams using Salesforce but still moving critical data manually between commerce, operations, reporting, and back-office systems.",
+    detailIntro:
+      "The job is to make Salesforce reliable inside the wider system: clear ownership, source-aware writes, duplicate prevention, failure visibility, and predictable data movement across business tools.",
     outcomes: [
       "Salesforce data sync with external systems",
       "Source-aware upsert logic that avoids duplicate records",
@@ -149,6 +227,35 @@ export const primaryServices: ServiceDetail[] = [
       "Ops teams stuck reconciling records between multiple systems",
       "Organizations that need reliable CRM-connected automation",
     ],
+    notFit: [
+      "Teams that only need a basic one-time CSV import",
+      "Organizations without clarity on which system owns which records",
+      "Projects expecting integrations without validation, logging, or failure handling",
+    ],
+    engagementSteps: [
+      "Map systems, object ownership, sync direction, and duplicate risk",
+      "Define middleware behavior, validation rules, and edge-case handling",
+      "Implement the sync layer, upserts, and operational visibility",
+      "Stabilize the flows with logs, checks, and support-ready handoff notes",
+    ],
+    proofPoints: [
+      "Bidirectional sync across Salesforce, ecommerce, and ERP-style systems",
+      "Source-aware upserts designed to reduce duplicate creation",
+      "Operational reporting and failure handling for ongoing reliability",
+    ],
+    keyQuestions: [
+      {
+        question: "Can you work with messy existing integrations and duplicate data risk?",
+        answer:
+          "Yes. That is often the starting point. The integration work focuses on object ownership, idempotent behavior, validation, and the practical rules required to stop duplicate creation and manual reconciliation.",
+      },
+      {
+        question: "Do you only work inside Salesforce?",
+        answer:
+          "No. The work usually spans Salesforce plus ecommerce systems, internal apps, ETL services, file ingestion, APIs, dashboards, and automation layers around the CRM.",
+      },
+    ],
+    relatedProjectIds: ["sap-salesforce-sync"],
     results: [
       "Cleaner CRM data and fewer duplicate records",
       "Reliable handoff between Salesforce and business systems",
@@ -180,9 +287,12 @@ export const trustMetrics = [
 export const featuredProjects: FeaturedProject[] = [
   {
     id: "sap-salesforce-sync",
+    slug: "sap-salesforce-ecommerce-sync",
     category: "Enterprise Integration",
     title: "SAP, Salesforce, and ecommerce synchronization platform.",
     clientLabel: "Enterprise integration engineering",
+    summary:
+      "A distributed sync layer designed to keep enterprise systems aligned without duplicate creation or manual reconciliation work.",
     problem:
       "Business data needed to move reliably between SAP, Salesforce, and a custom ecommerce system without duplicate records or manual reconciliation.",
     architecture: [
@@ -191,15 +301,29 @@ export const featuredProjects: FeaturedProject[] = [
       "Source-aware upsert logic",
       "Acknowledgement and outbound payload generation",
     ],
+    approach: [
+      "Mapped system ownership and sync direction before implementation",
+      "Designed idempotent upsert rules around record provenance",
+      "Added acknowledgement and outbound payload behavior to support downstream flows",
+    ],
     outcome:
       "A bidirectional, idempotent sync layer designed to keep enterprise systems consistent while reducing duplicate creation across distributed flows.",
     proof: ["Salesforce integration", "SAP data sync", "Idempotent pipelines"],
+    impact: [
+      "Reduced manual reconciliation work between business systems",
+      "Improved confidence in CRM-connected operations and reporting",
+      "Created a more supportable integration layer with clearer failure visibility",
+    ],
+    relatedServices: ["salesforce-integrations", "ai-automation"],
   },
   {
     id: "commerce-platform",
+    slug: "multi-vendor-commerce-platform",
     category: "Commerce Platform",
     title: "Multi-vendor customizable ecommerce platform with event-driven workflows.",
     clientLabel: "Marketplace product engineering",
+    summary:
+      "A commerce platform built as a system, not a storefront, with seller workflows, async events, and operational controls.",
     problem:
       "A marketplace needed seller-managed customization, order lifecycle automation, wallet flows, shipping updates, and admin controls without collapsing into one monolith.",
     architecture: [
@@ -208,15 +332,29 @@ export const featuredProjects: FeaturedProject[] = [
       "RabbitMQ event workflows",
       "Razorpay and Shiprocket integrations",
     ],
+    approach: [
+      "Separated responsibilities across backend services instead of one overloaded app",
+      "Used async event flows for order lifecycle, shipping, and wallet logic",
+      "Connected platform operations with seller controls and admin visibility",
+    ],
     outcome:
       "A production-grade commerce foundation with asynchronous updates, seller wallet credits, shipment status automation, commission snapshots, and audit trails.",
     proof: ["RabbitMQ workflows", "Redis caching", "Payment and shipping webhooks"],
+    impact: [
+      "Made complex operational workflows easier to scale without manual coordination",
+      "Improved platform control through admin tooling and event-driven visibility",
+      "Created a stronger foundation for future product growth and feature expansion",
+    ],
+    relatedServices: ["mvp-development", "ai-automation"],
   },
   {
     id: "multi-surface-app",
+    slug: "multi-surface-product-suite",
     category: "Product Surfaces",
     title: "Three independent Next.js applications for customer, seller, and admin users.",
     clientLabel: "Multi-surface product architecture",
+    summary:
+      "A shared product foundation delivered through separate applications for distinct user groups with different jobs to do.",
     problem:
       "Different user groups needed separate product experiences while sharing design patterns, TypeScript foundations, and consistent data contracts.",
     architecture: [
@@ -225,9 +363,20 @@ export const featuredProjects: FeaturedProject[] = [
       "Reusable UI components",
       "Shared TypeScript patterns",
     ],
+    approach: [
+      "Split product surfaces by user type while keeping contracts and patterns consistent",
+      "Built reusable components and shared TypeScript foundations for faster iteration",
+      "Used independent surfaces to reduce complexity for each audience",
+    ],
     outcome:
       "Separate product surfaces that can evolve independently while keeping implementation consistent across customer, vendor, and platform operations.",
     proof: ["Customer app", "Seller app", "Admin app"],
+    impact: [
+      "Improved clarity for each user group through purpose-built interfaces",
+      "Made ongoing product iteration easier without coupling every experience together",
+      "Created a reusable system foundation for future feature work",
+    ],
+    relatedServices: ["mvp-development"],
   },
 ];
 
@@ -405,13 +554,18 @@ export const faqItems = [
 ];
 
 export const navItems = [
-  { href: "#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
-  { href: "#engineering", label: "Engineering" },
-  { href: "#process", label: "Process" },
-  { href: "#contact", label: "Contact" },
+  { href: "/process", label: "Process" },
+  { href: "/engineering", label: "Engineering" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function getServiceBySlug(slug: string) {
   return primaryServices.find((service) => service.slug === slug);
+}
+
+export function getProjectBySlug(slug: string) {
+  return featuredProjects.find((project) => project.slug === slug);
 }
