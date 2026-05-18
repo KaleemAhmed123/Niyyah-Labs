@@ -26,7 +26,7 @@ function SectionShell({
   id?: string;
 }) {
   return (
-    <section className={`mx-auto max-w-7xl px-6 lg:px-10 ${className}`} id={id}>
+    <section className={`page-shell px-6 lg:px-10 ${className}`} id={id}>
       {children}
     </section>
   );
@@ -35,7 +35,7 @@ function SectionShell({
 function HeroSection() {
   return (
     <section className="grid-shell relative overflow-hidden">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 py-5 lg:px-10 lg:py-6">
+      <div className="page-shell flex min-h-screen flex-col px-6 py-5 lg:px-10 lg:py-6">
         <SiteHeader currentPath="/" />
 
         <div className="grid flex-1 gap-8 py-6 lg:grid-cols-[0.98fr_0.82fr] lg:items-start lg:py-10 xl:gap-10 xl:py-12">
@@ -66,14 +66,14 @@ function HeroSection() {
               </a>
             </div>
 
-            {/* <div className="grid gap-4 pt-2 sm:grid-cols-3">
+            <div className="grid gap-4 pt-2 sm:grid-cols-3">
               {trustMetrics.map((metric) => (
                 <div className="metric-card" key={metric.value}>
                   <p className="metric-value">{metric.value}</p>
                   <p className="metric-label">{metric.label}</p>
                 </div>
               ))}
-            </div> */}
+            </div>
           </div>
 
           <div className="mx-auto w-full max-w-[35rem] lg:-mt-4 xl:-mt-8 xl:max-w-[37rem]">
@@ -319,7 +319,6 @@ function ProcessPreviewSection() {
                 </p>
               </Link>
             </div>
-
           </div>
 
           <div className="panel-subtle process-hire-panel relative overflow-hidden lg:col-span-2">
@@ -331,9 +330,9 @@ function ProcessPreviewSection() {
                   Calm execution for messy product and operations problems.
                 </h3>
                 <p className="mt-4 max-w-xl text-sm leading-7 text-foreground-soft">
-                  Most teams do not need more software noise. They need
-                  someone who can map the bottleneck, define the system, and
-                  ship something reliable enough to operate on.
+                  Most teams do not need more software noise. They need someone
+                  who can map the bottleneck, define the system, and ship
+                  something reliable enough to operate on.
                 </p>
               </div>
 

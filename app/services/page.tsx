@@ -15,7 +15,7 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
+        <div className="page-shell px-6 py-6 lg:px-10">
           <SiteHeader currentPath="/services" />
 
           <div className="max-w-3xl space-y-5 py-12 lg:py-16">
@@ -32,7 +32,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-5 lg:grid-cols-3">
           {primaryServices.map((service) => (
             <article className="panel service-card" key={service.slug}>
@@ -59,7 +59,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="panel">
           <div className="max-w-3xl">
             <p className="eyebrow">How to choose</p>

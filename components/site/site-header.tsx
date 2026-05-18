@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/site/theme-toggle";
 
 type SiteHeaderProps = {
   currentPath?: string;
@@ -27,25 +28,33 @@ export function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
           </p>
         </div>
 
-        <nav className="site-nav" aria-label="Primary">
-          {navLinks.map((link) => {
-            const isActive =
-              link.href === currentPath ||
-              (link.href !== "/" &&
-                !link.href.includes("#") &&
-                currentPath.startsWith(link.href));
+        <div className="site-header-actions">
+          <nav className="site-nav" aria-label="Primary">
+            {navLinks.map((link) => {
+              const isActive =
+                link.href === currentPath ||
+                (link.href !== "/" &&
+                  !link.href.includes("#") &&
+                  currentPath.startsWith(link.href));
 
-            return (
-              <Link
-                className={isActive ? "site-nav-link site-nav-link-active" : "site-nav-link"}
-                href={link.href}
-                key={link.href}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
+              return (
+                <Link
+                  className={
+                    isActive
+                      ? "site-nav-link site-nav-link-active"
+                      : "site-nav-link"
+                  }
+                  href={link.href}
+                  key={link.href}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

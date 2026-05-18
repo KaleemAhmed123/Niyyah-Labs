@@ -15,7 +15,7 @@ const supportLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="mx-auto mt-6 max-w-7xl px-6 pb-10 lg:px-10">
+    <footer className="page-shell mt-6 px-6 pb-10 lg:px-10">
       <div className="site-footer">
         <div className="space-y-2">
           <p className="text-xs uppercase tracking-[0.35em] text-foreground-muted">

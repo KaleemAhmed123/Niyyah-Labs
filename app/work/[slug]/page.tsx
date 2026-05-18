@@ -63,7 +63,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+        <div className="page-shell px-6 py-8 lg:px-10">
           <SiteHeader currentPath="/work" />
 
           <div className="grid gap-8 py-16 lg:grid-cols-[1fr_0.9fr] lg:items-end lg:py-24">
@@ -110,7 +110,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-3">
           <article className="panel">
             <p className="eyebrow">Problem</p>
@@ -140,7 +140,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">
           <article className="panel">
             <p className="eyebrow">Implementation Approach</p>
@@ -168,7 +168,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
           <article className="panel">
             <p className="eyebrow">Confidentiality Note</p>
@@ -191,7 +191,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
       </section>
 
       {relatedServices.length > 0 ? (
-        <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <section className="page-shell px-6 pb-24 lg:px-10">
           <div className="panel">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
@@ -229,7 +229,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="panel cta-panel">
           <p className="eyebrow">Next Step</p>
           <h2 className="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">

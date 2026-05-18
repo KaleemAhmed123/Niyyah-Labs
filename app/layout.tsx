@@ -50,8 +50,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+  try {
+    const storedTheme = localStorage.getItem("niyyah-theme");
+    const theme = storedTheme || "dark";
+    document.documentElement.dataset.theme = theme;
+  } catch {
+    document.documentElement.dataset.theme = "dark";
+  }
+})();`,
+          }}
+        />
         {children}
         <SiteFooter />
       </body>

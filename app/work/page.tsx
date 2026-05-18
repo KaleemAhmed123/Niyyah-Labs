@@ -14,7 +14,7 @@ export default function WorkPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
+        <div className="page-shell px-6 py-6 lg:px-10">
           <SiteHeader currentPath="/work" />
 
           <div className="mt-10 max-w-3xl space-y-5 pb-12 lg:pb-16">
@@ -32,7 +32,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="mt-8 grid gap-5">
           {featuredProjects.map((project) => (
             <article className="panel proof-project" key={project.id}>

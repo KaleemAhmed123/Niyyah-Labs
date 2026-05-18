@@ -16,7 +16,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+        <div className="page-shell px-6 py-8 lg:px-10">
           <SiteHeader currentPath="/services" />
 
           <div className="grid gap-8 py-16 lg:grid-cols-[1fr_0.9fr] lg:items-end lg:py-24">
@@ -56,7 +56,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-3">
           <article className="panel lg:col-span-2">
             <p className="eyebrow">Deliverables</p>
@@ -83,7 +83,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="panel grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <ProofDiagram
             items={service.artifacts}
@@ -145,7 +145,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
           <article className="panel">
             <p className="eyebrow">How Engagements Start</p>
@@ -173,7 +173,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="panel grid gap-8 lg:grid-cols-[1fr_0.9fr]">
           <div>
             <p className="eyebrow">Expected Outcomes</p>
@@ -193,7 +193,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="panel">
             <p className="eyebrow">Trust Signals</p>
@@ -226,7 +226,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
       </section>
 
       {relatedProjects.length > 0 ? (
-        <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <section className="page-shell px-6 pb-24 lg:px-10">
           <div className="panel">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
@@ -271,7 +271,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+      <section className="page-shell px-6 pb-24 lg:px-10">
         <div className="panel cta-panel">
           <p className="eyebrow">Next Step</p>
           <h2 className="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">

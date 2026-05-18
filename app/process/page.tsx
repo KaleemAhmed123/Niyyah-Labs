@@ -19,7 +19,7 @@ export default function ProcessPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-10">
+        <div className="page-shell px-6 py-6 lg:px-10">
           <SiteHeader currentPath="/process" />
 
           <div className="max-w-4xl py-12 lg:py-16">
@@ -37,7 +37,7 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
           <article className="panel">
             <ProofDiagram
@@ -71,7 +71,7 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="panel">
           <div className="max-w-3xl">
             <p className="eyebrow">Engagement Models</p>
@@ -98,7 +98,7 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-4">
           {processSteps.map((item) => (
             <article className="panel process-row" key={item.step}>
@@ -123,7 +123,7 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+      <section className="page-shell px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="panel cta-panel">
           <p className="eyebrow">Next Step</p>
           <h2 className="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">

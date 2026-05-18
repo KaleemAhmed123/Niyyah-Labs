@@ -12,7 +12,7 @@ export default function FaqPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <section className="grid-shell relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10">
+        <div className="page-shell px-6 py-8 lg:px-10">
           <SiteHeader currentPath="/faq" />
 
           <div className="max-w-4xl py-16 lg:py-24">
