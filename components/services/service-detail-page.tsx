@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { featuredProjects, type ServiceDetail } from "@/components/home/home-data";
 import { SiteHeader } from "@/components/site/site-header";
+import { ProofDiagram } from "@/components/site/proof-diagram";
+import { VisualMedia } from "@/components/site/visual-media";
 
 type ServiceDetailPageProps = {
   service: ServiceDetail;
@@ -38,7 +40,8 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               </div>
             </div>
 
-            <div className="panel">
+            <div className="panel service-hero-visual">
+              <VisualMedia asset={service.visual} priority size="hero" />
               <p className="stack-label">What this service solves</p>
               <div className="mt-6 space-y-3">
                 {service.outcomes.map((outcome) => (
@@ -77,6 +80,68 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               ))}
             </div>
           </article>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <div className="panel grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <ProofDiagram
+            items={service.artifacts}
+            label="Expected artifacts"
+            title={service.label}
+            variant={
+              service.slug === "salesforce-integrations"
+                ? "integration"
+                : service.slug === "ai-automation"
+                  ? "ai"
+                  : "platform"
+            }
+          />
+
+          <div>
+            <p className="eyebrow">Example Starting Scopes</p>
+            <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+              Concrete enough to evaluate before a full proposal.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-foreground-soft">
+              {service.timeline}
+            </p>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="panel-subtle">
+                <p className="stack-label">Example work</p>
+                <div className="mt-4 space-y-3">
+                  {service.examples.map((item) => (
+                    <div className="list-row" key={item}>
+                      <span className="list-dot" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="panel-subtle">
+                <p className="stack-label">Artifacts you should expect</p>
+                <div className="mt-4 space-y-3">
+                  {service.artifacts.map((item) => (
+                    <div className="list-row" key={item}>
+                      <span className="list-dot" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link className="button-primary" href="/#contact">
+                Send a project brief
+              </Link>
+              <Link className="button-secondary" href="/work">
+                See proof examples
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -171,13 +236,14 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                 </h2>
               </div>
               <Link className="button-secondary" href="/work">
-                View all case studies
+                View all system examples
               </Link>
             </div>
 
             <div className="mt-8 grid gap-5 lg:grid-cols-3">
               {relatedProjects.map((project) => (
                 <article className="panel-subtle" key={project.id}>
+                  <VisualMedia asset={project.visual} size="card" />
                   <p className="stack-label">{project.category}</p>
                   <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">
                     {project.title}
@@ -196,7 +262,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                     className="mt-6 inline-flex text-sm text-accent-cyan"
                     href={`/work/${project.slug}`}
                   >
-                    Read case study
+                    Read system example
                   </Link>
                 </article>
               ))}

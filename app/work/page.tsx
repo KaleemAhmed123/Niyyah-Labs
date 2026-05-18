@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { featuredProjects } from "@/components/home/home-data";
 import { SiteHeader } from "@/components/site/site-header";
+import { ProofDiagram } from "@/components/site/proof-diagram";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Selected System Examples",
   description:
-    "Explore Niyyah Labs work across Salesforce integrations, ecommerce systems, and multi-surface product engineering.",
+    "Explore anonymized Niyyah Labs system examples across marketplace platforms, Salesforce integrations, AI automation, and desktop AI tools.",
 };
 
 export default function WorkPage() {
@@ -19,12 +20,13 @@ export default function WorkPage() {
           <div className="mt-10 max-w-3xl space-y-5 pb-12 lg:pb-16">
             <p className="eyebrow">Work</p>
             <h1 className="text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
-              Systems built around reliability, automation, and operational clarity.
+              Selected system examples, anonymized until full public case studies are approved.
             </h1>
             <p className="text-base leading-7 text-foreground-soft sm:text-lg">
-              A closer look at the kinds of engineering problems Niyyah Labs is
-              built for: enterprise data movement, marketplace infrastructure,
-              and multi-surface products that support real business workflows.
+              A closer look at the proof behind the claims: marketplace
+              infrastructure, enterprise data movement, AI document workflows,
+              and focused AI utilities. Sensitive client data, payloads, and
+              screenshots are withheld until approved.
             </p>
           </div>
         </div>
@@ -34,38 +36,65 @@ export default function WorkPage() {
         <div className="mt-8 grid gap-5">
           {featuredProjects.map((project) => (
             <article className="panel proof-project" key={project.id}>
-              <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+              <div className="work-project-header">
                 <div>
                   <p className="text-xs uppercase tracking-[0.22em] text-accent-cyan">
                     {project.category}
                   </p>
-                  <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
+                  <h2 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">
                     {project.title}
                   </h2>
-                  <p className="mt-3 text-sm text-foreground-muted">
+                  <p className="mt-2 text-sm text-foreground-muted">
                     {project.clientLabel}
                   </p>
-                  <p className="mt-4 text-sm leading-7 text-foreground-soft">
+                </div>
+
+                <div className="work-project-summary">
+                  <p className="text-sm leading-7 text-foreground-soft">
                     {project.summary}
                   </p>
                   <Link
-                    className="mt-6 inline-flex text-sm text-accent-cyan"
+                    className="mt-4 inline-flex text-sm text-accent-cyan"
                     href={`/work/${project.slug}`}
                   >
-                    Read case study
+                    Read system example
                   </Link>
                 </div>
+              </div>
 
-                <div className="grid gap-4 lg:grid-cols-3">
-                  <div className="panel-subtle">
+              <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+                <div>
+                  <ProofDiagram
+                    items={project.metrics}
+                    label={project.category}
+                    title={project.title}
+                    variant={
+                      project.id === "sap-salesforce-sync"
+                        ? "integration"
+                        : project.id === "acord-automation"
+                          ? "ai"
+                          : project.id === "bayanflow-desktop"
+                            ? "desktop"
+                            : project.id === "forever-yours"
+                              ? "realtime"
+                              : "platform"
+                    }
+                  />
+                </div>
+
+                <div className="work-proof-stack">
+                  <div className="panel-subtle work-proof-row">
                     <p className="stack-label">Problem</p>
-                    <p className="mt-3 text-sm leading-7 text-foreground-soft">
-                      {project.problem}
-                    </p>
+                    <div>
+                      <p className="text-sm leading-7 text-foreground-soft">
+                        {project.problem}
+                      </p>
+                    </div>
                   </div>
-                  <div className="panel-subtle">
+
+                  <div className="panel-subtle work-proof-row">
                     <p className="stack-label">Architecture</p>
-                    <div className="mt-3 space-y-3">
+                    <div className="work-proof-list">
                       {project.architecture.map((item) => (
                         <div className="list-row" key={item}>
                           <span className="list-dot" />
@@ -74,18 +103,40 @@ export default function WorkPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="panel-subtle">
-                    <p className="stack-label">Outcome</p>
-                    <p className="mt-3 text-sm leading-7 text-foreground-soft">
-                      {project.outcome}
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.proof.map((item) => (
-                        <span className="tag" key={item}>
-                          {item}
-                        </span>
-                      ))}
+
+                  <div className="panel-subtle work-proof-row">
+                    <p className="stack-label">Proof</p>
+                    <div>
+                      <p className="text-sm leading-7 text-foreground-soft">
+                        {project.outcome}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.proof.map((item) => (
+                          <span className="tag" key={item}>
+                            {item}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+                <div className="panel-subtle">
+                  <p className="stack-label">Confidentiality note</p>
+                  <p className="mt-3 text-sm leading-7 text-foreground-soft">
+                    {project.confidentialityNote}
+                  </p>
+                </div>
+                <div className="panel-subtle">
+                  <p className="stack-label">Assets to add next</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {project.proofAssets.map((asset) => (
+                      <span className="tag" key={asset}>
+                        {asset}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>

@@ -4,7 +4,9 @@ node_modules/
 # next.js build output
 .next/
 out/
-
+proof-notes
+audit
+notes
 # local environment files
 .env
 .env.local
@@ -17,6 +19,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+.next-dev*.log
 
 # system files
 .DS_Store

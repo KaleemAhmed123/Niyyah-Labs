@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { primaryServices } from "@/components/home/home-data";
 
 type TimelineOption = "ASAP" | "2-8 weeks" | "2-3 months" | "Exploring";
-type BudgetOption = "< $5k" | "$5k-$15k" | "$15k-$30k" | "$30k+";
+type BudgetOption = "Discovery / audit" | "$5k-$15k" | "$15k-$30k" | "$30k+";
 
 const timelineOptions: TimelineOption[] = [
   "ASAP",
@@ -15,7 +15,7 @@ const timelineOptions: TimelineOption[] = [
 ];
 
 const budgetOptions: BudgetOption[] = [
-  "< $5k",
+  "Discovery / audit",
   "$5k-$15k",
   "$15k-$30k",
   "$30k+",
@@ -119,7 +119,7 @@ export function TerminalIntake() {
 
   const contactValidation = {
     name: !form.name.trim() ? "Name is required." : "",
-    phone: !form.phone.trim() ? "Phone number is required." : "",
+    phone: "",
     email: !form.email.trim()
       ? "Work email is required."
       : !/\S+@\S+\.\S+/.test(form.email)
@@ -139,7 +139,7 @@ export function TerminalIntake() {
     if (index === 1) return Boolean(form.timeline);
     if (index === 2) return Boolean(form.budget);
     if (index === 3) return form.challenge.trim().length >= 20;
-    if (index === 4) return Boolean(form.name && form.email && form.phone);
+    if (index === 4) return Boolean(form.name && form.email);
     return false;
   };
 
@@ -231,7 +231,6 @@ export function TerminalIntake() {
     if (!form.budget) messages.push("Select a budget range.");
     if (challengeValidation) messages.push(challengeValidation);
     if (contactValidation.name) messages.push(contactValidation.name);
-    if (contactValidation.phone) messages.push(contactValidation.phone);
     if (contactValidation.email) messages.push(contactValidation.email);
 
     return messages;
@@ -543,15 +542,10 @@ export function TerminalIntake() {
                                   onChange={(event) =>
                                     updateField("phone", event.target.value)
                                   }
-                                  placeholder="Phone number"
+                                  placeholder="Phone number (optional)"
                                   type="tel"
                                   value={form.phone}
                                 />
-                                {contactValidation.phone ? (
-                                  <p className="terminal-field-hint terminal-field-hint-error">
-                                    {contactValidation.phone}
-                                  </p>
-                                ) : null}
                               </div>
                               <div className="sm:col-span-2">
                                 <input
@@ -572,7 +566,8 @@ export function TerminalIntake() {
                             </div>
 
                             <p className="terminal-field-hint">
-                              We will use these details for a professional follow-up on the brief.
+                              We use these details only to follow up on the
+                              brief. Phone is optional.
                             </p>
                           </div>
                         ) : null}
@@ -672,7 +667,8 @@ export function TerminalIntake() {
             <span className="terminal-note-label">what happens next</span>
             <span>
               We review the brief, identify the strongest build path, and reply
-              with the right next step for scope, timeline, and technical risk.
+              with the right next step for scope, timeline, proof assets, and
+              technical risk.
             </span>
           </div>
 

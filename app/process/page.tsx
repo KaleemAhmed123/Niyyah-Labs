@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   deliveryArtifacts,
+  engagementModels,
   processSignals,
   processSteps,
 } from "@/components/home/home-data";
 import { SiteHeader } from "@/components/site/site-header";
+import { ProofDiagram } from "@/components/site/proof-diagram";
 
 export const metadata: Metadata = {
   title: "Process",
@@ -23,12 +25,13 @@ export default function ProcessPage() {
           <div className="max-w-4xl py-12 lg:py-16">
             <p className="eyebrow">Process</p>
             <h1 className="mt-5 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-6xl">
-              A business-first delivery process with technical depth behind it.
+              A delivery process that produces decisions, artifacts, and launch clarity.
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-7 text-foreground-soft sm:text-lg">
               The goal is not to jump from idea to code too early. Each project
               starts by clarifying the operating problem, then turns that into a
-              system plan, implementation path, and release-ready foundation.
+              system map, build plan, proof package, and release-ready
+              foundation.
             </p>
           </div>
         </div>
@@ -37,6 +40,12 @@ export default function ProcessPage() {
       <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
           <article className="panel">
+            <ProofDiagram
+              items={["Brief intake", "System map", "Build contract", "Release layer"]}
+              label="Process loop"
+              title="From bottleneck to build path"
+              variant="platform"
+            />
             <p className="eyebrow">Core Signals</p>
             <div className="mt-6 space-y-3">
               {processSignals.map((signal) => (
@@ -59,6 +68,33 @@ export default function ProcessPage() {
               ))}
             </div>
           </article>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+        <div className="panel">
+          <div className="max-w-3xl">
+            <p className="eyebrow">Engagement Models</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+              The shape changes based on the uncertainty.
+            </h2>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {engagementModels.map((model) => (
+              <article className="panel-subtle" key={model.title}>
+                <p className="stack-label">{model.title}</p>
+                <p className="mt-4 text-sm leading-7 text-foreground-soft">
+                  <span className="text-white">Best for: </span>
+                  {model.bestFor}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-foreground-soft">
+                  <span className="text-white">Output: </span>
+                  {model.output}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

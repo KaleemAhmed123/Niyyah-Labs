@@ -4,6 +4,7 @@ export type ServiceDetail = {
   label: string;
   title: string;
   summary: string;
+  visual: VisualAsset;
   intro: string;
   detailIntro: string;
   outcomes: string[];
@@ -13,6 +14,9 @@ export type ServiceDetail = {
   notFit: string[];
   engagementSteps: string[];
   proofPoints: string[];
+  examples: string[];
+  timeline: string;
+  artifacts: string[];
   keyQuestions: {
     question: string;
     answer: string;
@@ -30,6 +34,7 @@ export type FeaturedProject = {
   title: string;
   clientLabel: string;
   summary: string;
+  visual: VisualAsset;
   problem: string;
   architecture: string[];
   approach: string[];
@@ -37,6 +42,9 @@ export type FeaturedProject = {
   proof: string[];
   impact: string[];
   relatedServices: string[];
+  metrics: string[];
+  confidentialityNote: string;
+  proofAssets: string[];
 };
 
 export type ReviewSlot = {
@@ -51,6 +59,7 @@ export type EngineeringPillar = {
   title: string;
   summary: string;
   capabilities: string[];
+  riskReduction: string;
 };
 
 export type ProcessStep = {
@@ -58,6 +67,30 @@ export type ProcessStep = {
   title: string;
   text: string;
   details: string[];
+};
+
+export type VisualAsset = {
+  src: string;
+  alt: string;
+  label: string;
+  signal: string;
+  hoverTitle: string;
+  hoverText: string;
+  trustSignal: string;
+};
+
+export type ProofExample = {
+  label: string;
+  title: string;
+  summary: string;
+  facts: string[];
+  serviceSlug: string;
+};
+
+export type EngagementModel = {
+  title: string;
+  bestFor: string;
+  output: string;
 };
 
 const serviceOrder = [
@@ -74,6 +107,16 @@ export const primaryServices: ServiceDetail[] = [
     title: "Launch a real product foundation without creating a rebuild problem.",
     summary:
       "We build MVPs, SaaS platforms, portals, and internal products with auth, roles, dashboards, payments, and clean architecture from day one.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      alt: "Laptop showing a digital product workspace on a focused desk setup",
+      label: "Product foundation",
+      signal: "From idea to usable operating surface",
+      hoverTitle: "Clients need more than a launch screen.",
+      hoverText:
+        "This work turns the first release into a real product base: roles, dashboards, data ownership, payments, and admin control from day one.",
+      trustSignal: "Best for founders who want speed without a rebuild trap.",
+    },
     intro:
       "This offer is for founders and teams who need speed, but not a throwaway prototype. The goal is a focused first version that can onboard users and keep evolving.",
     detailIntro:
@@ -111,6 +154,18 @@ export const primaryServices: ServiceDetail[] = [
       "Role-aware dashboards, auth, and reusable UI patterns from the first release",
       "Launch foundations designed for iteration instead of throwaway validation",
     ],
+    examples: [
+      "Customer, seller, and admin applications for a customizable commerce marketplace",
+      "Private couple-based SaaS with chat, memories, letters, watch-together, and admin-managed onboarding",
+      "Windows desktop AI utility with global hotkey recording, transcription, cleanup, and paste automation",
+    ],
+    timeline:
+      "Most focused builds start with a 1-2 week product architecture and scope phase before implementation sprints.",
+    artifacts: [
+      "Scope map and user-role model",
+      "Clickable product flow or interface map",
+      "Architecture notes, deployment context, and handoff plan",
+    ],
     keyQuestions: [
       {
         question: "Can this start as a lean MVP without becoming fragile later?",
@@ -123,7 +178,7 @@ export const primaryServices: ServiceDetail[] = [
           "Yes. The engagement is strongest when we refine the first release around the actual business risk, user workflow, and operational constraint instead of just implementing a feature list.",
       },
     ],
-    relatedProjectIds: ["multi-surface-app", "commerce-platform"],
+    relatedProjectIds: ["commerce-platform", "forever-yours", "bayanflow-desktop"],
     results: [
       "Cleaner launch path with fewer rebuilds later",
       "Faster iteration after the first release",
@@ -140,6 +195,16 @@ export const primaryServices: ServiceDetail[] = [
     title: "AI workflows that connect to real tools, data, and operations.",
     summary:
       "We design AI assistants, agents, and workflow automation systems that reduce repetitive work and connect to business systems.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      alt: "Analytics dashboard with charts and operational data on screen",
+      label: "Automation loop",
+      signal: "AI connected to decisions, tools, and reporting",
+      hoverTitle: "AI should reduce operational drag.",
+      hoverText:
+        "The value is not the chatbot. It is the workflow around it: retrieval, permissions, human review, CRM updates, escalation, and measurement.",
+      trustSignal: "Built for teams that want AI inside real operations.",
+    },
     intro:
       "This is not chatbot theater. It is for teams that want AI embedded inside real workflows, permissions, business rules, and reporting.",
     detailIntro:
@@ -177,6 +242,18 @@ export const primaryServices: ServiceDetail[] = [
       "Assistants and agents connected to CRM, forms, internal tools, and reporting",
       "Monitoring, prompt controls, and escalation paths for edge cases",
     ],
+    examples: [
+      "Insurance document pipeline that turns uploads into extracted facts, recommended ACORD forms, quality scores, and generated PDFs",
+      "Desktop dictation workflow that records speech, transcribes with Groq, optionally cleans text, and pastes into the active app",
+      "Operational automation patterns around lead routing, CRM updates, reporting, human review, and fallbacks",
+    ],
+    timeline:
+      "AI automation usually starts with a workflow audit and proof-of-value build before production hardening.",
+    artifacts: [
+      "Use-case map with source systems and human review points",
+      "Prompt, retrieval, fallback, and monitoring notes",
+      "Workflow diagram showing inputs, tool actions, approvals, and outputs",
+    ],
     keyQuestions: [
       {
         question: "How do you keep AI work from becoming a fragile demo?",
@@ -189,7 +266,7 @@ export const primaryServices: ServiceDetail[] = [
           "Yes. The strongest use cases usually connect assistants or automation to CRM records, knowledge sources, forms, internal tools, approvals, or reporting flows.",
       },
     ],
-    relatedProjectIds: ["sap-salesforce-sync", "commerce-platform"],
+    relatedProjectIds: ["acord-automation", "bayanflow-desktop", "sap-salesforce-sync"],
     results: [
       "Reduced operational drag",
       "Faster response cycles across internal or customer workflows",
@@ -206,6 +283,16 @@ export const primaryServices: ServiceDetail[] = [
     title: "Make Salesforce part of the system, not another disconnected tool.",
     summary:
       "We connect Salesforce with ecommerce, internal apps, SAP-style systems, files, APIs, dashboards, and automation workflows.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+      alt: "Networked data visualization suggesting connected business systems",
+      label: "System sync",
+      signal: "CRM data moving with ownership and control",
+      hoverTitle: "Disconnected systems create silent revenue leaks.",
+      hoverText:
+        "We map source of truth, duplicate risk, object ownership, retry behavior, and failure visibility before touching the sync layer.",
+      trustSignal: "Designed for Salesforce teams tired of manual reconciliation.",
+    },
     intro:
       "This offer fits teams using Salesforce but still moving critical data manually between commerce, operations, reporting, and back-office systems.",
     detailIntro:
@@ -243,6 +330,18 @@ export const primaryServices: ServiceDetail[] = [
       "Source-aware upserts designed to reduce duplicate creation",
       "Operational reporting and failure handling for ongoing reliability",
     ],
+    examples: [
+      "SAP-style FTP, Salesforce, and ecommerce ETL layer with object-specific handlers and acknowledgement files",
+      "Salesforce/ecommerce outbound sync with OAuth clients, enriched errors, archive folders, and operational logs",
+      "Insurance workflow exports prepared for agency management systems after structured document processing",
+    ],
+    timeline:
+      "Integration work usually begins with a system map and data ownership pass before middleware or API implementation.",
+    artifacts: [
+      "Object ownership and sync-direction map",
+      "Payload examples, error states, and acknowledgement rules",
+      "Operational runbook for logs, retries, archive folders, and support handoff",
+    ],
     keyQuestions: [
       {
         question: "Can you work with messy existing integrations and duplicate data risk?",
@@ -255,7 +354,7 @@ export const primaryServices: ServiceDetail[] = [
           "No. The work usually spans Salesforce plus ecommerce systems, internal apps, ETL services, file ingestion, APIs, dashboards, and automation layers around the CRM.",
       },
     ],
-    relatedProjectIds: ["sap-salesforce-sync"],
+    relatedProjectIds: ["sap-salesforce-sync", "acord-automation"],
     results: [
       "Cleaner CRM data and fewer duplicate records",
       "Reliable handoff between Salesforce and business systems",
@@ -271,16 +370,55 @@ export const primaryServices: ServiceDetail[] = [
 
 export const trustMetrics = [
   {
-    value: "Ops clarity",
-    label: "Turn scattered tools, manual handoffs, and unclear ownership into one reliable workflow",
+    value: "5 proof tracks",
+    label: "Marketplace platform, ACORD automation, ETL sync, real-time SaaS, and AI desktop utility",
   },
   {
-    value: "Launch-ready",
-    label: "Build MVPs, portals, dashboards, and automations with a foundation that can keep scaling",
+    value: "3 surfaces",
+    label: "Customer, seller, and admin applications built for separate user jobs, not one crowded app",
   },
   {
-    value: "AI + CRM",
-    label: "Connect AI workflows, Salesforce, APIs, and reporting so business data moves without busywork",
+    value: "AI + CRM + ops",
+    label: "Document extraction, Salesforce sync, payments, delivery, queues, and desktop automation",
+  },
+];
+
+export const proofExamples: ProofExample[] = [
+  {
+    label: "Marketplace platform",
+    title: "A customizable commerce system with customer, seller, and admin surfaces.",
+    summary:
+      "A large monorepo product with separate apps, service-oriented backend domains, event-driven order/payment/delivery workflows, and seller/admin operations.",
+    facts: [
+      "Next.js customer, seller, and admin UIs",
+      "Order, payment, product, delivery, notification, chat, and wallet domains",
+      "Razorpay, Shiprocket, RabbitMQ, Redis, Prisma, MongoDB, ImageKit",
+    ],
+    serviceSlug: "mvp-development",
+  },
+  {
+    label: "Enterprise integration",
+    title: "SAP-style files, Salesforce, and ecommerce kept in sync through ETL middleware.",
+    summary:
+      "A Node.js integration hub with FTP file drops, folder watchers, object-specific handlers, REST endpoints, acknowledgements, archives, and error visibility.",
+    facts: [
+      "Salesforce and ecommerce API clients",
+      "SAP-style inbound, outbound, success, error, and archive folders",
+      "Handlers for accounts, orders, payments, invoices, stock, complaints, and pricebooks",
+    ],
+    serviceSlug: "salesforce-integrations",
+  },
+  {
+    label: "AI workflow automation",
+    title: "Insurance documents turned into structured facts, form recommendations, and generated PDFs.",
+    summary:
+      "An ACORD automation platform combining OCR, LLM-assisted extraction, schema validation, form matching, quality scoring, ARQ questions, audit logs, and billing gates.",
+    facts: [
+      "OCR -> extraction -> validation -> recommendation -> PDF generation",
+      "Rate limits, MIME checks, virus scan, trace IDs, and audit logging",
+      "Stripe billing, signatures, sessions, and async processing paths",
+    ],
+    serviceSlug: "ai-automation",
   },
 ];
 
@@ -289,121 +427,293 @@ export const featuredProjects: FeaturedProject[] = [
     id: "sap-salesforce-sync",
     slug: "sap-salesforce-ecommerce-sync",
     category: "Enterprise Integration",
-    title: "SAP, Salesforce, and ecommerce synchronization platform.",
+    title: "SAP, Salesforce, and ecommerce synchronization layer.",
     clientLabel: "Enterprise integration engineering",
     summary:
       "A distributed sync layer designed to keep enterprise systems aligned without duplicate creation or manual reconciliation work.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80",
+      alt: "Connected global data network representing enterprise system sync",
+      label: "Integration map",
+      signal: "SAP + Salesforce + ecommerce alignment",
+      hoverTitle: "The business risk was duplicate, stale, or conflicting records.",
+      hoverText:
+        "The solution focus was idempotent sync behavior, source-aware writes, acknowledgements, and operational visibility across distributed systems.",
+      trustSignal: "Proof of deep integration thinking, not simple API wiring.",
+    },
     problem:
       "Business data needed to move reliably between SAP, Salesforce, and a custom ecommerce system without duplicate records or manual reconciliation.",
     architecture: [
-      "Node.js ETL services",
-      "File-based ingestion plus REST APIs",
-      "Source-aware upsert logic",
-      "Acknowledgement and outbound payload generation",
+      "Node.js + Express ETL middleware",
+      "Embedded FTP server and file-system watcher",
+      "Object-specific inbound/outbound handlers",
+      "Success/error acknowledgements with archive folders",
     ],
     approach: [
-      "Mapped system ownership and sync direction before implementation",
-      "Designed idempotent upsert rules around record provenance",
-      "Added acknowledgement and outbound payload behavior to support downstream flows",
+      "Routed SAP file drops by folder and object type",
+      "Connected Salesforce and ecommerce through OAuth-backed API clients",
+      "Separated inbound, outbound, success, error, and archive flows for visibility",
     ],
     outcome:
-      "A bidirectional, idempotent sync layer designed to keep enterprise systems consistent while reducing duplicate creation across distributed flows.",
-    proof: ["Salesforce integration", "SAP data sync", "Idempotent pipelines"],
+      "A bidirectional integration layer that made record movement, acknowledgements, and error handling explicit across enterprise systems.",
+    proof: ["Salesforce integration", "SAP-style FTP", "Acknowledgements"],
     impact: [
       "Reduced manual reconciliation work between business systems",
       "Improved confidence in CRM-connected operations and reporting",
       "Created a more supportable integration layer with clearer failure visibility",
     ],
     relatedServices: ["salesforce-integrations", "ai-automation"],
+    metrics: [
+      "14+ business object flows",
+      "Inbound, outbound, success, error, and archive paths",
+      "Salesforce + ecommerce + SAP-style file workflow",
+    ],
+    confidentialityNote:
+      "Payloads and system details are anonymized; the architecture pattern is public-safe.",
+    proofAssets: [
+      "Folder workflow diagram",
+      "Sanitized JSON payload examples",
+      "Object handler matrix",
+    ],
   },
   {
     id: "commerce-platform",
     slug: "multi-vendor-commerce-platform",
     category: "Commerce Platform",
-    title: "Multi-vendor customizable ecommerce platform with event-driven workflows.",
+    title: "Multi-vendor customizable commerce platform with event-driven operations.",
     clientLabel: "Marketplace product engineering",
     summary:
       "A commerce platform built as a system, not a storefront, with seller workflows, async events, and operational controls.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1400&q=80",
+      alt: "Commerce operations workspace with digital ordering and payment context",
+      label: "Commerce ops",
+      signal: "Orders, wallets, shipping, and admin control",
+      hoverTitle: "Marketplace growth breaks when workflows stay manual.",
+      hoverText:
+        "The architecture separated seller workflows, order events, payment webhooks, wallet credits, shipping updates, and admin visibility.",
+      trustSignal: "Shows ability to turn commerce complexity into a system.",
+    },
     problem:
       "A marketplace needed seller-managed customization, order lifecycle automation, wallet flows, shipping updates, and admin controls without collapsing into one monolith.",
     architecture: [
-      "12-service backend architecture",
-      "API gateway with auth and RBAC",
-      "RabbitMQ event workflows",
-      "Razorpay and Shiprocket integrations",
+      "Three frontend apps for customer, seller, and admin users",
+      "Service-oriented backend with gateway-routed domains",
+      "RabbitMQ workflows for payment, order, delivery, and notifications",
+      "Razorpay, Shiprocket, Redis, Prisma, MongoDB, ImageKit",
     ],
     approach: [
-      "Separated responsibilities across backend services instead of one overloaded app",
-      "Used async event flows for order lifecycle, shipping, and wallet logic",
-      "Connected platform operations with seller controls and admin visibility",
+      "Separated customer shopping, seller operations, and admin governance",
+      "Grouped orders by shop/seller after payment and stored order-time snapshots",
+      "Connected checkout, delivery, notifications, wallet, and dashboard operations",
     ],
     outcome:
-      "A production-grade commerce foundation with asynchronous updates, seller wallet credits, shipment status automation, commission snapshots, and audit trails.",
-    proof: ["RabbitMQ workflows", "Redis caching", "Payment and shipping webhooks"],
+      "A marketplace foundation with role-specific interfaces and operational workflows for product, payment, order, delivery, notification, chat, and wallet domains.",
+    proof: ["3 role-specific UIs", "RabbitMQ workflows", "Razorpay + Shiprocket"],
     impact: [
       "Made complex operational workflows easier to scale without manual coordination",
       "Improved platform control through admin tooling and event-driven visibility",
       "Created a stronger foundation for future product growth and feature expansion",
     ],
     relatedServices: ["mvp-development", "ai-automation"],
+    metrics: [
+      "3 frontend applications",
+      "12+ backend service domains",
+      "Payment, delivery, media, email, chat, and wallet workflows",
+    ],
+    confidentialityNote:
+      "Shown as an anonymized platform architecture example; production maturity claims are kept conservative.",
+    proofAssets: [
+      "Customer, seller, and admin screenshots",
+      "Payment-to-order event diagram",
+      "Service ownership map",
+    ],
   },
   {
-    id: "multi-surface-app",
-    slug: "multi-surface-product-suite",
-    category: "Product Surfaces",
-    title: "Three independent Next.js applications for customer, seller, and admin users.",
-    clientLabel: "Multi-surface product architecture",
+    id: "acord-automation",
+    slug: "acord-insurance-automation-platform",
+    category: "AI Document Automation",
+    title: "AI-assisted ACORD workflow platform for insurance documents.",
+    clientLabel: "Document automation engineering",
     summary:
-      "A shared product foundation delivered through separate applications for distinct user groups with different jobs to do.",
+      "A document workflow platform that turns uploaded insurance files into structured facts, form recommendations, quality checks, and generated PDFs.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80",
+      alt: "Insurance and financial documents arranged on a desk",
+      label: "Document pipeline",
+      signal: "OCR, extraction, validation, forms, and scoring",
+      hoverTitle: "AI only works when the workflow around it is controlled.",
+      hoverText:
+        "The system validates uploads, extracts facts, checks conflicts, recommends forms, generates PDFs, audits changes, and keeps human review paths visible.",
+      trustSignal: "Proof of AI workflow engineering beyond prompt demos.",
+    },
     problem:
-      "Different user groups needed separate product experiences while sharing design patterns, TypeScript foundations, and consistent data contracts.",
+      "Insurance submissions required turning messy uploaded declarations into structured facts, recommended ACORD forms, editable PDFs, and quality guidance.",
     architecture: [
-      "Next.js App Router",
-      "SSR and SSG where useful",
-      "Reusable UI components",
-      "Shared TypeScript patterns",
+      "FastAPI backend with React/Vite frontend",
+      "OCR and LLM-assisted extraction pipeline",
+      "Deterministic ACORD form matching and field coverage scoring",
+      "Audit logs, billing gates, signatures, and security middleware",
     ],
     approach: [
-      "Split product surfaces by user type while keeping contracts and patterns consistent",
-      "Built reusable components and shared TypeScript foundations for faster iteration",
-      "Used independent surfaces to reduce complexity for each audience",
+      "Separated OCR, extraction, validation, form matching, and PDF generation into a controlled pipeline",
+      "Added schema guards before extracted data reached persistence",
+      "Built quality scoring, ARQ questions, and audit trails around generated output",
     ],
     outcome:
-      "Separate product surfaces that can evolve independently while keeping implementation consistent across customer, vendor, and platform operations.",
-    proof: ["Customer app", "Seller app", "Admin app"],
+      "A workflow that uses AI inside validation, scoring, review, and generation controls instead of treating the model as the whole product.",
+    proof: ["OCR pipeline", "ACORD PDFs", "Audit + scoring"],
     impact: [
-      "Improved clarity for each user group through purpose-built interfaces",
-      "Made ongoing product iteration easier without coupling every experience together",
-      "Created a reusable system foundation for future feature work",
+      "Reduced manual document interpretation work",
+      "Made form selection and missing-field visibility easier to review",
+      "Created a safer AI-assisted workflow with validation, rate limits, and auditability",
+    ],
+    relatedServices: ["ai-automation", "mvp-development"],
+    metrics: [
+      "OCR -> extraction -> validation -> recommendation -> PDF generation",
+      "Multiple ACORD form schemas and templates",
+      "Upload limits, MIME checks, virus scan, trace IDs, and audit logs",
+    ],
+    confidentialityNote:
+      "Insurance data and form examples must remain sanitized; supported-form claims should be verified before publication.",
+    proofAssets: [
+      "Upload and recommendation screenshots",
+      "Pipeline architecture diagram",
+      "Generated PDF/editor screenshot with private data removed",
+    ],
+  },
+  {
+    id: "bayanflow-desktop",
+    slug: "ai-dictation-desktop-utility",
+    category: "AI Desktop Utility",
+    title: "Windows AI dictation app that pastes into any active input.",
+    clientLabel: "Focused AI product engineering",
+    summary:
+      "A tray-based desktop utility that records speech through a global hotkey, transcribes with Groq, optionally cleans the result, and pastes or copies into the active app.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80",
+      alt: "Desktop workspace with laptop and audio gear",
+      label: "Desktop automation",
+      signal: "Speak, transcribe, clean, paste",
+      hoverTitle: "Small tools still need product-grade reliability.",
+      hoverText:
+        "The app protects paste targets, restores clipboard state, handles cleanup fallback, exports diagnostics, and keeps the workflow available from the tray.",
+      trustSignal: "Proof of desktop AI utility engineering.",
+    },
+    problem:
+      "Users wanted to speak naturally and place cleaned text into any desktop input without being trapped inside one editor or web app.",
+    architecture: [
+      "Electron and TypeScript desktop app",
+      "Global hotkeys and microphone recording",
+      "Groq transcription with optional cleanup provider",
+      "Clipboard paste automation with active-window protection",
+    ],
+    approach: [
+      "Built a tray-first workflow with settings, status overlay, and single-instance behavior",
+      "Captured the active target before recording and verified it before paste",
+      "Added cleanup fallback, diagnostics export, temp audio cleanup, and regression tests",
+    ],
+    outcome:
+      "A focused AI productivity tool that turns speech into usable text and safely places it into the user's current desktop workflow.",
+    proof: ["Electron", "Groq transcription", "Global hotkey"],
+    impact: [
+      "Reduced friction for writing into existing apps",
+      "Showed AI value through a complete local workflow, not a chat screen",
+      "Created supportability with logs, diagnostics, and test coverage around core behavior",
+    ],
+    relatedServices: ["ai-automation", "mvp-development"],
+    metrics: [
+      "Tray app, settings, hotkey, overlay, transcription, cleanup, paste, diagnostics",
+      "Tests for dictation, insertion, hotkey, config, renderer security, and observability",
+      "Windows packaging configured; installer asset issue noted for release polish",
+    ],
+    confidentialityNote:
+      "Public demo should show sanitized logs and no API keys.",
+    proofAssets: [
+      "Tray/settings screenshots",
+      "Speak-to-paste demo video",
+      "Diagnostics export example",
+    ],
+  },
+  {
+    id: "forever-yours",
+    slug: "private-couple-realtime-platform",
+    category: "Real-Time SaaS",
+    title: "Private couple-based SaaS platform with real-time shared experiences.",
+    clientLabel: "Consumer SaaS and real-time product engineering",
+    summary:
+      "A private emotional product that moved from user-owned data toward couple-owned spaces with chat, memories, letters, watch-together, voice signaling, subscription gates, and admin onboarding.",
+    visual: {
+      src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1400&q=80",
+      alt: "Warm shared digital communication setting",
+      label: "Private space",
+      signal: "Couple-owned data, real-time connection, strict isolation",
+      hoverTitle: "Privacy and real-time UX have to be designed together.",
+      hoverText:
+        "The product centers a coupleId model, room-level socket checks, partner-only chat, memory and letter surfaces, watch sync, voice signaling, and admin-created access paths.",
+      trustSignal: "Proof of consumer SaaS and real-time isolation thinking.",
+    },
+    problem:
+      "A user-centric emotional app needed to become a private shared space where each couple owns the experience and cannot see another couple's data.",
+    architecture: [
+      "Next.js App Router frontend with multi-page product surfaces",
+      "Express and MongoDB backend with JWT auth",
+      "Socket.IO rooms with participant checks",
+      "WebRTC signaling for voice and watch-together experiences",
+    ],
+    approach: [
+      "Shifted the product model from user-owned data to couple-owned spaces",
+      "Added participant checks across REST and socket room joins",
+      "Connected chat, letters, memories, watch sync, subscription limits, and admin-created couples",
+    ],
+    outcome:
+      "A privacy-first real-time SaaS foundation where chat, memories, letters, and shared viewing can evolve around strict couple isolation.",
+    proof: ["Socket.IO", "WebRTC signaling", "Couple isolation"],
+    impact: [
+      "Made privacy and ownership central to the product architecture",
+      "Improved product scalability by moving from one scroll page to route-specific experiences",
+      "Created monetization and admin-control foundations for private onboarding",
     ],
     relatedServices: ["mvp-development"],
+    metrics: [
+      "Couple-owned spaces with partner1, partner2, access codes, and subscription plan",
+      "Chat, memories, letters, watch-together, voice signaling, and admin surfaces",
+      "Backend participant checks for rooms, messages, and socket events",
+    ],
+    confidentialityNote:
+      "Relationship content and private media must be replaced with demo data before screenshots are public.",
+    proofAssets: [
+      "Home/chat/memories/watch screenshots",
+      "Couple isolation diagram",
+      "Admin onboarding screenshot",
+    ],
   },
 ];
 
 export const buildCapabilities = [
   {
     title: "Enterprise data sync",
-    text: "SAP, Salesforce, ecommerce, file ingestion, REST APIs, and source-aware upserts.",
+    text: "SAP-style files, Salesforce, ecommerce, FTP watchers, REST APIs, acknowledgements, and error visibility.",
   },
   {
     title: "Marketplace platforms",
-    text: "Seller workflows, product customization, wallets, commissions, shipping, and admin controls.",
+    text: "Customer, seller, and admin surfaces with product customization, checkout, delivery, wallet, and admin controls.",
   },
   {
     title: "Multi-surface products",
-    text: "Customer, seller, admin, and operations apps built on shared TypeScript foundations.",
+    text: "Role-specific apps for customers, sellers, admins, couples, operators, and desktop users.",
   },
   {
     title: "Automation pipelines",
-    text: "RabbitMQ workflows, webhooks, notifications, shipment updates, and lifecycle events.",
+    text: "RabbitMQ workflows, OCR/LLM pipelines, webhooks, notifications, shipment updates, and lifecycle events.",
   },
   {
     title: "Internal tools",
-    text: "Dashboards, approvals, reporting views, CRM-connected workflows, and ops control panels.",
+    text: "Dashboards, approvals, reporting views, CRM-connected workflows, project intake, and ops control panels.",
   },
   {
     title: "Reliable launch foundations",
-    text: "Auth, RBAC, rate limiting, caching, observability, CI/CD, and release-ready infrastructure.",
+    text: "Auth, RBAC, rate limiting, upload validation, caching, observability, diagnostics, and release handoff.",
   },
 ];
 
@@ -432,24 +742,32 @@ export const engineeringPillars: EngineeringPillar[] = [
     summary:
       "Node.js and Express systems designed around services, API boundaries, RBAC, rate limiting, and clean request routing.",
     capabilities: ["Microservices", "API gateways", "Auth and RBAC", "TypeScript services"],
+    riskReduction:
+      "Keeps complex products from becoming one fragile app where every feature touches everything else.",
   },
   {
     title: "Enterprise integrations",
     summary:
       "Data movement across SAP, Salesforce, ecommerce, files, REST APIs, and third-party systems with idempotency in mind.",
     capabilities: ["Salesforce APIs", "SAP sync", "FTP/SFTP ingestion", "Source-aware upserts"],
+    riskReduction:
+      "Reduces duplicate records, manual reconciliation, and hidden sync failures across business tools.",
   },
   {
     title: "Async and real-time workflows",
     summary:
       "Event-driven flows for wallet credits, notifications, shipping updates, webhooks, and lifecycle automation.",
     capabilities: ["RabbitMQ", "Redis", "Socket.IO", "Message queues"],
+    riskReduction:
+      "Moves slow, failure-prone, or fan-out work out of the request path so core actions can keep moving.",
   },
   {
     title: "DevOps and observability",
     summary:
       "Deployment and monitoring foundations that make systems easier to operate after launch, not just easier to demo.",
     capabilities: ["Docker", "GitHub Actions", "Winston logging", "Grafana dashboards"],
+    riskReduction:
+      "Makes handoff, debugging, and post-launch support less dependent on memory or tribal knowledge.",
   },
 ];
 
@@ -472,6 +790,45 @@ export const deliveryArtifacts = [
   {
     label: "Release layer",
     text: "Environment config, CI/CD checks, logs, and rollback-safe delivery practices.",
+  },
+  {
+    label: "Proof package",
+    text: "Screens, diagrams, payload examples, and notes that can later become public-safe case-study material.",
+  },
+  {
+    label: "Risk register",
+    text: "Known technical risks, unresolved assumptions, and what should be hardened before wider launch.",
+  },
+];
+
+export const engagementModels: EngagementModel[] = [
+  {
+    title: "Discovery and architecture sprint",
+    bestFor:
+      "Teams with a real problem but unclear system shape, data ownership, or launch sequence.",
+    output:
+      "System map, recommended scope, technical risk notes, first build plan, and proof assets to collect.",
+  },
+  {
+    title: "Focused product build",
+    bestFor:
+      "Founders or operators who need an MVP, portal, dashboard, internal tool, or desktop utility shipped with a maintainable foundation.",
+    output:
+      "Working product surface, backend foundation, integrations, deployment context, and handoff notes.",
+  },
+  {
+    title: "Integration or automation build",
+    bestFor:
+      "Teams fighting manual reconciliation, disconnected tools, CRM drift, document workflows, or repetitive operations.",
+    output:
+      "Integration map, middleware/API layer, automation workflow, logs, fallbacks, and operating runbook.",
+  },
+  {
+    title: "Stabilization and proof packaging",
+    bestFor:
+      "Teams with existing code that works in pieces but needs credibility, cleanup, documentation, or launch readiness.",
+    output:
+      "Audit notes, remediation roadmap, architecture docs, screenshots/diagrams, and safer next-release plan.",
   },
 ];
 
@@ -534,7 +891,7 @@ export const faqItems = [
   {
     question: "What kind of clients is Niyyah Labs best suited for?",
     answer:
-      "Teams that need real systems: founders launching products, companies replacing manual workflows, and businesses connecting fragmented tools into one operating flow.",
+      "B2B founders, operators, service businesses, and Salesforce-heavy teams that need custom products, AI workflows, integrations, internal tools, or operational platforms instead of another disconnected website or spreadsheet.",
   },
   {
     question: "Do you only build AI products?",
@@ -550,6 +907,36 @@ export const faqItems = [
     question: "What do we receive besides the code?",
     answer:
       "You get the working product or integration plus the supporting context: architecture notes, release guidance, environment details, key decisions, and a clear path for the next iteration.",
+  },
+  {
+    question: "Can you work without public case studies?",
+    answer:
+      "Yes. Some work is confidential, so we use anonymized architecture patterns, workflow maps, screenshots where allowed, sanitized payload examples, and implementation details that demonstrate the depth of the work without exposing client data.",
+  },
+  {
+    question: "Do you work with existing codebases?",
+    answer:
+      "Yes. We can audit, stabilize, document, or extend an existing product. The first step is usually mapping current architecture, risk areas, data flows, and what should be fixed before new feature work continues.",
+  },
+  {
+    question: "How do you handle AI safety and reliability?",
+    answer:
+      "We design AI as part of a workflow, not as the whole product. That means source-of-truth rules, validation, fallback behavior, human review points, monitoring, prompt controls, and clear boundaries around what the system is allowed to do.",
+  },
+  {
+    question: "Who owns the code and technical material?",
+    answer:
+      "The client owns the delivered code and project artifacts unless a different agreement is made. We aim to leave behind architecture notes, handoff context, and operational guidance so the work is not a black box.",
+  },
+  {
+    question: "Can you support Salesforce or ERP-style integrations?",
+    answer:
+      "Yes. We can map objects, sync direction, duplicate risk, source-of-truth ownership, acknowledgement flows, API behavior, file ingestion, and operational visibility before building the integration layer.",
+  },
+  {
+    question: "What happens after launch?",
+    answer:
+      "That depends on the engagement, but the build should leave a clear next path: support notes, risks to monitor, backlog recommendations, deployment context, and the next iteration or hardening priorities.",
   },
 ];
 

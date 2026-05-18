@@ -111,12 +111,16 @@ export function HeroCommandPanel() {
         } as React.CSSProperties
       }
     >
-      <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 text-xs uppercase tracking-[0.24em] text-foreground-muted">
+      <div aria-hidden="true" className="hero-cursor-cue">
+        <span className="hero-cursor-track" />
+        <span className="hero-cursor-pointer" />
+      </div>
+      <div className="hero-panel-header flex items-center justify-between border-b border-white/10 px-5 py-5 text-xs uppercase tracking-[0.24em] text-foreground-muted">
         <span>business_problem.yml</span>
         <span>command center</span>
       </div>
 
-      <div className="grid gap-6 p-5">
+      <div className="hero-panel-body grid gap-7 px-4 py-5">
         <pre className="code-block">
           {`challenge: "Scale operations without hiring 50 reps"
 goals:
@@ -130,8 +134,8 @@ solution:
 outcome: "One system for growth"`}
         </pre>
 
-        <div className="rounded-[1.75rem] border border-white/10 bg-white/4 p-4">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="hero-pipeline-card rounded-[1.75rem] border border-white/10 bg-white/4 p-5">
+          <div className="hero-pipeline-header mb-3 flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-white">
                 AI Operations Pipeline
@@ -140,12 +144,12 @@ outcome: "One system for growth"`}
                 Live architecture preview
               </p>
             </div>
-            <span className="rounded-full bg-accent-violet/15 px-3 py-1 text-xs text-accent-violet">
+            <span className="rounded-full bg-accent-violet/15 px-3 text-xs text-accent-violet">
               Active
             </span>
           </div>
 
-          <div className="space-y-3">
+          <div className="hero-pipeline-list">
             {pipelineItems.map((item, index) => (
               <div className="pipeline-row" key={item}>
                 <span className="pipeline-index">0{index + 1}</span>
@@ -156,7 +160,7 @@ outcome: "One system for growth"`}
           </div>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="hero-status-grid grid gap-4 sm:grid-cols-3">
           {statusItems.map((item) => (
             <div className="status-card" key={item}>
               <p className="stack-label">{item}</p>

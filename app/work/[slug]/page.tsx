@@ -8,6 +8,8 @@ import {
   featuredProjects,
 } from "@/components/home/home-data";
 import { SiteHeader } from "@/components/site/site-header";
+import { ProofDiagram } from "@/components/site/proof-diagram";
+import { VisualMedia } from "@/components/site/visual-media";
 
 type WorkDetailPageProps = {
   params: Promise<{
@@ -35,7 +37,7 @@ export async function generateMetadata({
 
   if (!project) {
     return {
-      title: "Case Study Not Found",
+      title: "System Example Not Found",
     };
   }
 
@@ -75,7 +77,23 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
               </p>
             </div>
 
-            <div className="panel">
+            <div className="panel service-hero-visual">
+              <ProofDiagram
+                items={project.metrics}
+                label={project.category}
+                title={project.title}
+                variant={
+                  project.id === "sap-salesforce-sync"
+                    ? "integration"
+                    : project.id === "acord-automation"
+                      ? "ai"
+                      : project.id === "bayanflow-desktop"
+                        ? "desktop"
+                        : project.id === "forever-yours"
+                          ? "realtime"
+                          : "platform"
+                }
+              />
               <p className="stack-label">Proof Signals</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.proof.map((item) => (
@@ -150,6 +168,28 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
+        <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+          <article className="panel">
+            <p className="eyebrow">Confidentiality Note</p>
+            <p className="mt-6 text-sm leading-7 text-foreground-soft">
+              {project.confidentialityNote}
+            </p>
+          </article>
+
+          <article className="panel">
+            <p className="eyebrow">Proof Assets To Add</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {project.proofAssets.map((asset) => (
+                <span className="tag" key={asset}>
+                  {asset}
+                </span>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
       {relatedServices.length > 0 ? (
         <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-10">
           <div className="panel">
@@ -168,6 +208,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
             <div className="mt-8 grid gap-5 lg:grid-cols-3">
               {relatedServices.map((service) => (
                 <article className="panel-subtle" key={service.slug}>
+                  <VisualMedia asset={service.visual} size="card" />
                   <p className="stack-label">{service.label}</p>
                   <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">
                     {service.title}
@@ -199,7 +240,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
               Send a project brief
             </Link>
             <Link className="button-secondary" href="/work">
-              Back to work
+              Back to system examples
             </Link>
           </div>
         </div>

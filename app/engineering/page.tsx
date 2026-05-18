@@ -6,6 +6,8 @@ import {
   stackGroups,
 } from "@/components/home/home-data";
 import { SiteHeader } from "@/components/site/site-header";
+import { ProofDiagram } from "@/components/site/proof-diagram";
+import { AnimatedSignalPanel } from "@/components/site/visual-media";
 
 export const metadata: Metadata = {
   title: "Engineering",
@@ -37,11 +39,19 @@ export default function EngineeringPage() {
 
       <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
         <div className="grid gap-4 sm:grid-cols-2">
+          <AnimatedSignalPanel
+            label="System telemetry"
+            lines={["API boundary", "Queue event", "CRM sync", "Observability"]}
+          />
           {engineeringPillars.map((pillar) => (
             <article className="panel engineering-card" key={pillar.title}>
               <p className="stack-label">{pillar.title}</p>
               <p className="mt-4 text-sm leading-7 text-foreground-soft">
                 {pillar.summary}
+              </p>
+              <p className="mt-4 text-sm leading-7 text-foreground-soft">
+                <span className="text-white">Client risk reduced: </span>
+                {pillar.riskReduction}
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {pillar.capabilities.map((capability) => (
@@ -52,6 +62,29 @@ export default function EngineeringPage() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-18 lg:px-10 lg:pb-20">
+        <div className="grid gap-5 lg:grid-cols-3">
+          <ProofDiagram
+            items={["Customer app", "Seller app", "Admin app", "Service domains"]}
+            label="Marketplace proof"
+            title="Multi-surface platform"
+            variant="platform"
+          />
+          <ProofDiagram
+            items={["SAP files", "Watcher", "Salesforce", "Ecommerce"]}
+            label="Integration proof"
+            title="Enterprise sync layer"
+            variant="integration"
+          />
+          <ProofDiagram
+            items={["OCR", "Extraction", "Validation", "Generated forms"]}
+            label="AI proof"
+            title="Controlled document automation"
+            variant="ai"
+          />
         </div>
       </section>
 
